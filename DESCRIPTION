@@ -3,8 +3,8 @@ Title: MBSE Analysis Of XML Files
 Version: 0.0.0.9000
 Authors@R: 
     person("Paul", "Palmer", , "p.j.palmer@lboro.ac.uk", role = c("aut", "cre"),
-           comment = c(ORCID = "YOUR-ORCID-ID"))
-Description: What the package does (one paragraph).
+           comment = c(ORCID = "0000-0002-1674-3728"))
+Description: These utilities facilitate the analysis of Model Based System Engineering (MBSE) XML files. The objective of the analysis is to extract syntactical information.
 License: MIT + file LICENSE
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)

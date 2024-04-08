@@ -1,5 +1,8 @@
 #' Make Datum Triple
 #'
+#' Extracts attributes from a XML element and presents them as a datum Triple in
+#' the form of a three column data frame.
+#'
 #' @param x A syntactically correct XML file with datumEntity and other
 #'   attributes set.
 #'
