@@ -10,8 +10,8 @@
 #'
 get.tag.value.pairs <- function(x){
   tag.value.pairs <- x %>% triple.as.wide() %>%
-    dplyr::filter( 'tag.type' == "TaggedValue") %>%
-    dplyr::select('datumEntity', 'tag', 'value') %>% tidyr::pivot_wider(
+    dplyr::filter( .data$tag.type == "TaggedValue") %>%
+    dplyr::select(.data$datumEntity, .data$tag, .data$value) %>% tidyr::pivot_wider(
       id_cols = 'datumEntity',
       names_from = 'tag',
       values_from = 'value') %>% data.as.triple()
