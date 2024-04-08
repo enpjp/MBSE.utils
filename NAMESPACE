@@ -2,8 +2,11 @@
 
 export("%>%")
 export(data.as.triple)
+export(get.tag.value.pairs)
 export(infer.datum.entity)
 export(make.datum.triple)
 export(set.datum.entity)
 export(set.datum.parent)
+export(triple.as.wide)
+export(triples.to.network)
 importFrom(magrittr,"%>%")

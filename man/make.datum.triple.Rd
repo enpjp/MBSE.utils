@@ -14,5 +14,6 @@ attributes set.}
 A data.frame of triples datumEntity, datumAttribute, datumValue.
 }
 \description{
-Make Datum Triple
+Extracts attributes from a XML element and presents them as a datum Triple in
+the form of a three column data frame.
 }

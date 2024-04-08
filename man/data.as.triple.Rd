@@ -13,5 +13,5 @@ data.as.triple(data)
 A data.frame of triples datumEntity, datumAttribute, datumValue.
 }
 \description{
-A convenience function for turning data.frames into long datum Triple format
+A convenience function for turning data.frames into long datum Triple format.
 }
