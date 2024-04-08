@@ -7,7 +7,7 @@
 #' @param internal.id This is the XML attribute name used for unique ID. This
 #'   default value is associated with Enterprise Architect.
 #'
-#' @return
+#' @return An XML file with datum Entity set.
 #' @export infer.datum.entity
 #'
 infer.datum.entity <- function(x, internal.id = 'xmi.id') {

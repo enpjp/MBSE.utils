@@ -12,6 +12,9 @@ infer.datum.entity(x, internal.id = "xmi.id")
 \item{internal.id}{This is the XML attribute name used for unique ID. This
 default value is associated with Enterprise Architect.}
 }
+\value{
+An XML file with datum Entity set.
+}
 \description{
 Checks to see if a system generated unique id exists. If it does, this is
 used as a datumEntity, if not, one is randomly generated.
