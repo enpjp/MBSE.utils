@@ -20,7 +20,7 @@ triples.to.network <- function(x){
 
   network.data.vertices <- wide.data.ss %>%
     dplyr::select(.data$datumEntity,
-                  data$tag.type)
+                  .data$tag.type)
 
 
   # Add a couple of columns for edges
