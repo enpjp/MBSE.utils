@@ -1,7 +1,7 @@
 #' Data Operator
 #'
 #'
-#'
+#' @name .data
 #' @keywords internal
 #' @export
 #' @importFrom rlang .data

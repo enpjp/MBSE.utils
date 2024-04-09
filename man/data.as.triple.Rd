@@ -4,10 +4,10 @@
 \alias{data.as.triple}
 \title{Turn Data Into Datum Triple format}
 \usage{
-data.as.triple(data)
+data.as.triple(x)
 }
 \arguments{
-\item{data}{data.frame with datumAttribute and named columns with values}
+\item{x}{Data.frame with datumAttribute and named columns with values}
 }
 \value{
 A data.frame of triples datumEntity, datumAttribute, datumValue.
