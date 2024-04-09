@@ -11,46 +11,43 @@
 #'
 #'
 make.datum.triple <- function(x) {
-  x.out  <- data.frame(
-                            datumEntity =character(),
-                            datumAttribute =character(),
-                            datumValue =character(),
-                            stringsAsFactors=FALSE)
+  x.out <- data.frame(
+    datumEntity = character(),
+    datumAttribute = character(),
+    datumValue = character(),
+    stringsAsFactors = FALSE
+  )
 
   # Find the base attributes as triple
 
   triples.out <- x %>%
-    xml.attrs.to.dataframe() %>% data.as.triple()
+    xml.attrs.to.dataframe() %>%
+    data.as.triple()
   x.out <- rbind(x.out, triples.out)
 
   # Get the children of the base element
-  children.elements <- x  %>% xml2::xml_children()
-    if(length(children.elements) > 0 ) {
-        for(i in seq_along(children.elements)  ) {
-          triples.out <- children.elements[i] %>%
-            xml.attrs.to.dataframe() %>% data.as.triple()
+  children.elements <- x %>% xml2::xml_children()
+  if (length(children.elements) > 0) {
+    for (i in seq_along(children.elements)) {
+      triples.out <- children.elements[i] %>%
+        xml.attrs.to.dataframe() %>%
+        data.as.triple()
 
-          x.out <- rbind(x.out, triples.out)
-
-
-          # And the recursive bit
-          children.of.children <- children.elements[i]  %>% xml2::xml_children()
-
-          if(length(children.of.children) > 0) {
-            for(j in seq_along(children.of.children)   ) {
-              recurse.out <-   make.datum.triple(children.of.children[j])
-              # recurse out always includes at least children.elements[i]
-              x.out <- rbind(x.out, recurse.out)
-
-            }
+      x.out <- rbind(x.out, triples.out)
 
 
+      # And the recursive bit
+      children.of.children <- children.elements[i] %>% xml2::xml_children()
 
-          }
-
+      if (length(children.of.children) > 0) {
+        for (j in seq_along(children.of.children)) {
+          recurse.out <- make.datum.triple(children.of.children[j])
+          # recurse out always includes at least children.elements[i]
+          x.out <- rbind(x.out, recurse.out)
         }
-
+      }
     }
+  }
 
 
   # x.attrs <- xml2::xml_attrs(x) %>% purrr::list_flatten()

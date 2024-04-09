@@ -8,17 +8,19 @@
 #' @export get.tag.value.pairs
 #'
 #'
-get.tag.value.pairs <- function(x){
-  tag.value.pairs <- x %>% triple.as.wide() %>%
-    dplyr::filter( .data$tag.type == "TaggedValue") %>%
-    dplyr::select(.data$datumEntity, .data$tag, .data$value) %>% tidyr::pivot_wider(
+get.tag.value.pairs <- function(x) {
+  tag.value.pairs <- x %>%
+    triple.as.wide() %>%
+    dplyr::filter(.data$tag.type == "TaggedValue") %>%
+    dplyr::select(.data$datumEntity, .data$tag, .data$value) %>%
+    tidyr::pivot_wider(
       id_cols = .data$datumEntity,
       names_from = .data$tag,
-      values_from = .data$value) %>% data.as.triple()
+      values_from = .data$value
+    ) %>%
+    data.as.triple()
 
-  x.out <- rbind(x, tag.value.pairs )
+  x.out <- rbind(x, tag.value.pairs)
 
   return(x.out)
-
 }
-

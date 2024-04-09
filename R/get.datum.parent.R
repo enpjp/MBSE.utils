@@ -9,7 +9,6 @@
 #'
 #'
 get.datum.parent <- function(x) {
-
   # logical test
 
   datum.entity.parent <- "Base"
@@ -20,17 +19,16 @@ get.datum.parent <- function(x) {
   #
   #   datum.entity.value <- xml2::xml_attr(x, 'xmi.id')
   # }else{
-    x.parent <-  xml2::xml_parent(x)
-    has.datumEntity <- xml2::xml_has_attr(x.parent, 'datumEntity')
+  x.parent <- xml2::xml_parent(x)
+  has.datumEntity <- xml2::xml_has_attr(x.parent, "datumEntity")
 
-    if(has.datumEntity) {
-      datum.entity.parent <- xml2::xml_attr(x.parent, 'datumEntity')
-    }
+  if (has.datumEntity) {
+    datum.entity.parent <- xml2::xml_attr(x.parent, "datumEntity")
+  }
 
   # datum.entity.parent <- xml2::xml_attr(x, 'datumEntity')
 
 
 
   return(datum.entity.parent)
-
 }

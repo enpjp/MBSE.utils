@@ -10,17 +10,19 @@
 #' @export triples.to.network
 #'
 #'
-triples.to.network <- function(x){
-   # This is a random layout so set seed to make it repeatable.
+triples.to.network <- function(x) {
+  # This is a random layout so set seed to make it repeatable.
   set.seed(1)
 
-  wide.data.ss <- x  %>% triple.as.wide()
+  wide.data.ss <- x %>% triple.as.wide()
 
   # Make the vertices (Nodes)
 
   network.data.vertices <- wide.data.ss %>%
-    dplyr::select(.data$datumEntity,
-                  .data$tag.type)
+    dplyr::select(
+      .data$datumEntity,
+      .data$tag.type
+    )
 
 
   # Add a couple of columns for edges
@@ -30,9 +32,9 @@ triples.to.network <- function(x){
 
   # The entity at the top of the tree does not have a parent, so is marked base
   # Drop the base link. This would work if we combined multiple diagrams
-  network.data.edges<- wide.data.ss %>%
-    dplyr::select(.data$from,.data$to) %>%
-    dplyr::filter(.data$from != "Base" )
+  network.data.edges <- wide.data.ss %>%
+    dplyr::select(.data$from, .data$to) %>%
+    dplyr::filter(.data$from != "Base")
 
   # Make an network object using `asNetwork` to convert the igraph class into
   # network class. Then `ggnetwork` to the universal dataframe format used in
@@ -40,13 +42,11 @@ triples.to.network <- function(x){
   network.graph <- igraph::graph_from_data_frame(
     network.data.edges,
     directed = TRUE,
-    vertices = network.data.vertices) %>%
+    vertices = network.data.vertices
+  ) %>%
     intergraph::asNetwork() %>%
     ggnetwork::ggnetwork(layout = "fruchtermanreingold")
 
 
   return(network.graph)
 }
-
-
-

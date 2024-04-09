@@ -13,10 +13,10 @@ xml.attrs.to.dataframe <- function(x) {
   # Get the attributes
   x.attrs <- xml2::xml_attrs(x)
   # Convert to data frame
-  raw.df <-  data.frame(as.list(x.attrs))
+  raw.df <- data.frame(as.list(x.attrs))
   # Transform rows and columns and drop row names
   df.out <- t(raw.df)
-  row.names(df.out)  <- NULL
+  row.names(df.out) <- NULL
 
   # Convert to a tibble to improve Tidyverse compatibility.
   df.tibble <- tidyr::as_tibble(df.out)
