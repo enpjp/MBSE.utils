@@ -11,7 +11,7 @@
 #'
 #'
 triples.to.network <- function(x){
-
+   # This is a random layout so set seed to make it repeatable.
   set.seed(1)
 
   wide.data.ss <- x  %>% triple.as.wide()
