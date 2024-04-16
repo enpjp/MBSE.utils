@@ -17,5 +17,6 @@ Imports:
     magrittr,
     purrr,
     rlang,
+    stringr,
     tidyr,
     xml2

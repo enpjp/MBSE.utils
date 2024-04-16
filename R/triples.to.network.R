@@ -34,8 +34,8 @@ triples.to.network <- function(x) {
   # Drop the base link. This would work if we combined multiple diagrams
   network.data.edges <- wide.data.ss %>%
     dplyr::select(.data$from, .data$to) %>%
-    dplyr::filter(.data$from != "Base")
-
+  #  dplyr::filter(.data$from != "Base")
+    dplyr::filter(!stringr::str_detect(.data$from,"^BASE"))
   # Make an network object using `asNetwork` to convert the igraph class into
   # network class. Then `ggnetwork` to the universal dataframe format used in
   # `ggplot2`
