@@ -10,8 +10,8 @@
 #'
 get.datum.parent <- function(x) {
   # logical test
-
-  datum.entity.parent <- "Base"
+  generate.hash <- rlang::hash(Sys.time())
+  datum.entity.parent <-  paste("BASE", generate.hash, sep = "_" )
 
   # has.xmi.id <-   xml2::xml_has_attr(x, 'xmi.id')
   #
