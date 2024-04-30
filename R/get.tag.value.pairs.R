@@ -16,18 +16,23 @@ get.tag.value.pairs <- function(x, drop.tag.cols = TRUE) {
   tag.present <- "TaggedValue" %in% wide.x$tag.type
 
   if( tag.present) {
-    tag.value.pairs <- x %>%
-      triple.as.wide() %>%
-      dplyr::filter(.data$tag.type == "TaggedValue") %>%
-      dplyr::select(.data$datumEntity, .data$tag, .data$value) %>%
+    # Find rows with "TaggedValue"
+    rows.with.taggedvalue <- which(wide.x$tag.type == "TaggedValue"  )
+    taggedvalue.df <- wide.x[rows.with.taggedvalue,]
+    taggedvalue.df <- taggedvalue.df %>%
+      dplyr::select(.data$datumEntity, .data$tag, .data$value)
+
+    expanded.df <- taggedvalue.df   %>%
       tidyr::pivot_wider(
         id_cols = .data$datumEntity,
         names_from = .data$tag,
         values_from = .data$value
       )
+    tagged.out <-   expanded.df  %>% data.as.triple()
+    # Now drop null values
+    tagged.out <-  tagged.out[!(is.na(tagged.out$datumValue) | tagged.out$datumValue=="NULL"), ]
 
-
-    x.out <- rbind(x, tag.value.pairs)
+    x.out <- rbind(x, tagged.out)
 
   }else{
     x.out <- x
