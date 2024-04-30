@@ -28,9 +28,10 @@ get.tag.value.pairs <- function(x, drop.tag.cols = TRUE) {
 
 
       if(drop.tag.cols) {
-        tag.value.pairs.wide$tag <- NULL
-        tag.value.pairs.wide$value <- NULL
-        tag.value.pairs <- tag.value.pairs.wide %>% data.as.triple()
+        tag.value.pairs.dropped <- dplyr::select( tag.value.pairs.wide,
+                                           select = -c( "tag", "value")   )
+
+        tag.value.pairs <- tag.value.pairs.dropped %>% data.as.triple()
       }else{
 
         tag.value.pairs <- tag.value.pairs.wide %>% data.as.triple()
