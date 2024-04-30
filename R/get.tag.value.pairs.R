@@ -13,10 +13,10 @@ get.tag.value.pairs <- function(x, drop.tag.cols = TRUE) {
 
   wide.x <- x %>% triple.as.wide()
 
-  tag.present <- "TaggedValue" %in% colnames( wide.x)
+  tag.present <- "TaggedValue" %in% wide.x$tag.type
 
   if( tag.present) {
-    tag.value.pairs.wide <- x %>%
+    tag.value.pairs <- x %>%
       triple.as.wide() %>%
       dplyr::filter(.data$tag.type == "TaggedValue") %>%
       dplyr::select(.data$datumEntity, .data$tag, .data$value) %>%
@@ -26,17 +26,6 @@ get.tag.value.pairs <- function(x, drop.tag.cols = TRUE) {
         values_from = .data$value
       )
 
-
-      if(drop.tag.cols) {
-        tag.value.pairs.dropped <- dplyr::select( tag.value.pairs.wide,
-                                           select = -c( "tag", "value")   )
-
-        tag.value.pairs <- tag.value.pairs.dropped %>% data.as.triple()
-      }else{
-
-        tag.value.pairs <- tag.value.pairs.wide %>% data.as.triple()
-
-      }
 
     x.out <- rbind(x, tag.value.pairs)
 
