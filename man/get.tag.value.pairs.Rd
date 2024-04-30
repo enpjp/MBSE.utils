@@ -4,10 +4,12 @@
 \alias{get.tag.value.pairs}
 \title{Get Tag Value Pairs}
 \usage{
-get.tag.value.pairs(x)
+get.tag.value.pairs(x, drop.tag.cols = TRUE)
 }
 \arguments{
 \item{x}{Datum Triple format data.}
+
+\item{drop.tag.cols}{Logical. If TRUE drop the columns 'tag' and 'value'.}
 }
 \value{
 datumTriples with tag value pairs.
