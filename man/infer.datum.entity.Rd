@@ -4,7 +4,7 @@
 \alias{infer.datum.entity}
 \title{Infer Datum Entity}
 \usage{
-infer.datum.entity(x, internal.id = "xmi.id")
+infer.datum.entity(x, internal.id = "id")
 }
 \arguments{
 \item{x}{A syntactically correct XML file.}

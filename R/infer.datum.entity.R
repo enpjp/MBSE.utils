@@ -10,7 +10,7 @@
 #' @return An XML file with datum Entity set.
 #' @export infer.datum.entity
 #'
-infer.datum.entity <- function(x, internal.id = "xmi.id") {
+infer.datum.entity <- function(x, internal.id = "id") {
   datum.entity.value <- "default"
 
   has.xmi.id <- xml2::xml_has_attr(x, internal.id)
