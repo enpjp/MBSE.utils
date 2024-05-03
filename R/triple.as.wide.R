@@ -13,7 +13,6 @@ triple.as.wide <- function(x) {
   data.out <- tidyr::pivot_wider(x,
     id_cols = "datumEntity",
     names_from = "datumAttribute",
-    values_fn = list,
     values_from = "datumValue"
   )
 
