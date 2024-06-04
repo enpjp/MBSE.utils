@@ -7,7 +7,8 @@
 triples.to.context.network(
   x,
   cols.to.include = c("id", "datumEntity", "tag.type", "nominal.name"),
-  drop.xml.edges = TRUE
+  drop.xml.edges = TRUE,
+  correct.dup.atts = TRUE
 )
 }
 \arguments{
@@ -16,6 +17,8 @@ triples.to.context.network(
 \item{cols.to.include}{List of columns to include.}
 
 \item{drop.xml.edges}{Logical. Should we drop the xml edges}
+
+\item{correct.dup.atts}{combine duplicate attributes}
 }
 \value{
 Network object

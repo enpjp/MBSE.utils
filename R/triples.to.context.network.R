@@ -5,24 +5,46 @@
 #' @param x Set of datum triples
 #' @param cols.to.include List of columns to include.
 #' @param drop.xml.edges Logical. Should we drop the xml edges
+#' @param correct.dup.atts combine duplicate attributes
 #'
 #' @return Network object
 #' @export triples.to.context.network
 #'
 triples.to.context.network <- function(x,
                   cols.to.include = c("id", "datumEntity","tag.type", "nominal.name"),
-                  drop.xml.edges = TRUE){
+                  drop.xml.edges = TRUE,
+                  correct.dup.atts = TRUE){
 
   set.seed(1)
 
  # wide.data.ss <- x  %>% MBSE.utils::triple.as.wide()
 
-  wide.data.ss <- x  %>% tidyr::pivot_wider(
-    id_cols = "datumEntity",
-    names_from = "datumAttribute",
- #  values_fn = list,
-    values_from = "datumValue"
-  ) #%>% mutate_all(as.character())
+  if(correct.dup.atts) {
+    wide.data.ss <- x  %>% tidyr::pivot_wider(
+      id_cols = "datumEntity",
+      names_from = "datumAttribute",
+        values_fn = list,
+      values_from = "datumValue"
+    ) #%>% mutate_all(as.character())
+    wide.data.ss[] <- lapply( wide.data.ss, paste0)
+
+  }else{
+    wide.data.ss <- x  %>% tidyr::pivot_wider(
+      id_cols = "datumEntity",
+      names_from = "datumAttribute",
+      #  values_fn = list,
+      values_from = "datumValue"
+    ) #%>% mutate_all(as.character())
+    # wide.dup.ss[] <- lapply( wide.dup.ss, paste0)
+
+
+  }
+
+
+
+
+
+
 
   # Correct the ID column with the unique IDs
   wide.data.ss$id <-  wide.data.ss$datumEntity
@@ -87,6 +109,10 @@ triples.to.context.network <- function(x,
   list.the.rows.with.NA <- all.nodes$name %>% is.na() %>% which()
   # Overwrite NA rows with tag.type
   all.nodes$nominal.name[list.the.rows.with.NA] <- all.nodes$tag.type[list.the.rows.with.NA]
+  list.the.rows.with.NULL <-  grepl("NULL", all.nodes$name ) %>% which()
+  # Overwrite NA rows with tag.type
+  all.nodes$nominal.name[list.the.rows.with.NULL] <- all.nodes$tag.type[list.the.rows.with.NULL]
+
   # Make the vertices (Nodes)
 
   all.nodes <- all.nodes %>% dplyr::select( dplyr::all_of(cols.to.include) )
