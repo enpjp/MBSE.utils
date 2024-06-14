@@ -110,7 +110,7 @@ triples.to.context.network <- function(x,
   # Overwrite NA rows with tag.type
   all.nodes$nominal.name[list.the.rows.with.NA] <- all.nodes$tag.type[list.the.rows.with.NA]
   list.the.rows.with.NULL <-  grepl("NULL", all.nodes$name ) %>% which()
-  # Overwrite NA rows with tag.type
+  # Overwrite NULL rows with tag.type
   all.nodes$nominal.name[list.the.rows.with.NULL] <- all.nodes$tag.type[list.the.rows.with.NULL]
 
   # Make the vertices (Nodes)
