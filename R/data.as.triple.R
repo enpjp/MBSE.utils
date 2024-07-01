@@ -1,6 +1,7 @@
 #' Turn Data Into Datum Triple format
 #'
 #' A convenience function for turning data.frames into long datum Triple format.
+#' The workhorse of this approach for analysing data.
 #'
 #' @param x Data.frame with datumAttribute and named columns with values
 #'
