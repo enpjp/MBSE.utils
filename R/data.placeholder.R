@@ -1,5 +1,6 @@
 #' Data Operator
 #'
+#' Needed for Tidyverse compatibility.
 #'
 #' @name .data
 #' @keywords internal
