@@ -1,5 +1,9 @@
 #' Any New Nodes
 #'
+#' An internal function used to help build igraph networks by finding nodes not
+#' included in derived lists and labelling them. This is useful when
+#' constructing networks with duplicate IDs and highlighting orphan links.
+#'
 #' @param new.nodes List of nodes
 #' @param existing.nodes List of nodes.
 #' @param new.node.type Name for any new nodes.
