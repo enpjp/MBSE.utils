@@ -1,6 +1,7 @@
 #' Get Tag Value Pairs
 #'
 #' Expand tag value pairs in the the data into datumAttribute and datumValue.
+#' This is a specific method of encoding data found in EA files.
 #'
 #' @param drop.tag.cols Logical. If TRUE drop the columns 'tag' and 'value'.
 #' @param x Datum Triple format data.

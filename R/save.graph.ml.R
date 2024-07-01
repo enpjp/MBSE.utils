@@ -1,6 +1,7 @@
-#' Save Graph In ML Format
+#' Save Graph In GML Format
 #'
-#' Saves a graph object as Ml so it can be read by Gephi.
+#' Saves a graph object as GMl so it can be read by Gephi. The form .ml is left
+#' over from an earlier function and left for compatibility.
 #'
 #' @param x Graph object
 #' @param name.prefix Name prefix for the file
