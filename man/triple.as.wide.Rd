@@ -13,6 +13,6 @@ triple.as.wide(x)
 Wide data.frame.
 }
 \description{
-Expands datumTriples into a data.frame with one row per datumEntity and on
-column per datumAttribue datumValue pair.
+A convenience function that expands datumTriples into a data.frame with one
+row per datumEntity and one column per attribute datumValue pair.
 }

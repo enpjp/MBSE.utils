@@ -17,5 +17,7 @@
 List of nodes
 }
 \description{
-Any New Nodes
+An internal function used to help build igraph networks by finding nodes not
+included in derived lists and labelling them. This is useful when
+constructing networks with duplicate IDs and highlighting orphan links.
 }

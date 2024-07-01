@@ -14,4 +14,5 @@ A data.frame of triples datumEntity, datumAttribute, datumValue.
 }
 \description{
 A convenience function for turning data.frames into long datum Triple format.
+The workhorse of this approach for analysing data.
 }

@@ -1,6 +1,6 @@
 Package: MBSE.utils
 Title: MBSE Analysis Of XML Files
-Version: 0.0.0.9000
+Version: 0.0.1.0000
 Authors@R: 
     person("Paul", "Palmer", , "p.j.palmer@lboro.ac.uk", role = c("aut", "cre"),
            comment = c(ORCID = "0000-0002-1674-3728"))

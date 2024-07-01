@@ -2,7 +2,7 @@
 % Please edit documentation in R/save.graph.ml.R
 \name{save.graph.ml}
 \alias{save.graph.ml}
-\title{Save Graph In ML Format}
+\title{Save Graph In GML Format}
 \usage{
 save.graph.ml(x, name.prefix = "subgraph")
 }
@@ -15,5 +15,6 @@ save.graph.ml(x, name.prefix = "subgraph")
 x unchanged and saves file.
 }
 \description{
-Saves a graph object as Ml so it can be read by Gephi.
+Saves a graph object as GMl so it can be read by Gephi. The form .ml is left
+over from an earlier function and left for compatibility.
 }

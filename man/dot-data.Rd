@@ -7,6 +7,6 @@
 The result of calling '.data'.
 }
 \description{
-Data Operator
+Needed for Tidyverse compatibility.
 }
 \keyword{internal}

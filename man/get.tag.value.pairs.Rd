@@ -16,4 +16,5 @@ datumTriples with tag value pairs.
 }
 \description{
 Expand tag value pairs in the the data into datumAttribute and datumValue.
+This is a specific method of encoding data found in EA files.
 }

@@ -13,5 +13,5 @@ triple.clean.dups(x)
 Set of triples with duplicates with new datumEntity values
 }
 \description{
-Triple Clean Duplicates
+An internal function used to clean duplicate IDs.
 }
