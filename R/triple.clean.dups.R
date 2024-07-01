@@ -1,5 +1,7 @@
 #' Triple Clean Duplicates
 #'
+#' An internal function used to clean duplicate IDs.
+#'
 #' @param x Set of triples
 #'
 #' @return Set of triples with duplicates with new datumEntity values

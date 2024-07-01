@@ -1,7 +1,7 @@
 #' Triple As Wide
 #'
-#' Expands datumTriples into a data.frame with one row per datumEntity and on
-#' column per datumAttribue datumValue pair.
+#' A convenience function that expands datumTriples into a data.frame with one
+#' row per datumEntity and one column per attribute datumValue pair.
 #'
 #' @param x Three column datum Triple format data.
 #'
