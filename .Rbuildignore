@@ -2,3 +2,4 @@
 ^\.Rproj\.user$
 ^LICENSE\.md$
 ^inst/dev/MBSE\.utils\.inst\.dev$
+^data-raw$
