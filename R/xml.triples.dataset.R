@@ -3,7 +3,7 @@
 #' A sample XML file created with Enterprise Architect software
 #'
 #' @format ## `datum Triples`
-#' A data frame with 7,240 rows and 60 columns:
+#' A data frame with 210 rows and 3 columns:
 #' \describe{
 #'   \item{datumEntity}{A unique identifier}
 #'   \item{datumAtribute}{Attribute name}
