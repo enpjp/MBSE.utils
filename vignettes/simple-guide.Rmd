@@ -1,5 +1,5 @@
 ---
-title: "simple-guide"
+title: "Simple-guide"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{simple-guide}
@@ -16,10 +16,12 @@ knitr::opts_chunk$set(
 
 ```{r setup}
 library(MBSE.utils)
+library(ggplot2)
+library(ggnetwork)
 ```
 
 
-# Traversing An XML File
+## Traversing An XML File
 
 ```{r traversing}
 
@@ -34,3 +36,122 @@ xml.atts.list$xml_atts_sorted
 ```
 
 There are `r xml.atts.list$number_of_attrs` attributes: `r xml.atts.list$all_attributes`
+
+## Converting A File To Datum Triples
+
+DatumTriples are the smallest unit of data.
+
+```{r makingDatumTriples}
+# Using test.xml again
+test.xml.file.path <- system.file("extdata","Example1.xml", package = "MBSE.utils")
+test.xml <- xml2::read_xml(test.xml.file.path)
+
+ all.nodes <- xml2::xml_find_all(test.xml, "/*", flatten = TRUE) %>% 
+   set.datum.entity() # Set datum entity adds missing IDs to nodes.
+
+# In complex files you might end up with a list of nodes sone need to traverse
+# the list. Here we have only one, but show the index for clarity.
+
+full.triple.out <- all.nodes[1] %>%  make.datum.triple()
+
+# Print a sample
+full.triple.out %>% head(5) %>% pander::pandoc.table()
+
+```
+
+## Network Plots
+```{r MakeNetworkPlot}
+# Reload the file to make sure that there is no unintended contamination from
+# earlier tests.
+
+test.xml.file.path <- system.file("extdata","Example1.xml", package = "MBSE.utils")
+test.xml <- xml2::read_xml(test.xml.file.path)
+
+# Find triples with specific encoding
+find.triple <- c("Requirement1",
+                 "Function",
+                 "System",
+                 "System Element 1",
+                 "System Element 2",
+                 "InterfaceBlock1",
+                 "Exchange Item 1",
+                 "Exchange Item 2",
+                 "Sub Function A",
+                 "Sub Function B",
+                 "block",
+                 "requirement",
+                 "satisfy",
+                 "refine",
+                 "allocate",
+                 "input",
+                 "output",
+                 "incoming",
+                 "model" ,
+                 "outgoing",
+                 "ProxyPort" ,
+                 "links" )
+
+# my.test.triple <-  triples.out %>%   filter(datumValue %in% find.triple)
+search.ontology  <-   knitr::combine_words(find.triple)
+
+graph.cols.to.include <- c("id", "datumEntity","tag.type", 
+                           "nominal.name", "name", 
+                           "plot.core","plot.size")
+ 
+```
+
+```{r LoadExample1XML }
+
+# We need to find the path to the directory, not the file.
+dir.path <- fs::path_dir(test.xml.file.path)
+
+xml.info <- xml.file.to.triples(dir.path, file.number = 1, 
+                                xpath = "/*") # original /* "//uml:Model"
+
+triples.out <- xml.info$triples
+this.file.name <-  paste(xml.info$file.name, "xpath = /*" )
+pander::pandoc.header(this.file.name, level = 2)
+```
+
+```{r Example1Xml, eval=TRUE, fig.cap= "A network representation of Example1.xml, with XML structure dropped."}
+triples.plus <- add.ontology.col(triples = triples.out,
+                                       triples.to.find = find.triple,
+                            datumAttributeCol = "plot.core",
+                            datumValueCol = "Ontology term",
+                            datumValueNot = "XML tag"
+                                 )
+
+triples.plus <- add.ontology.col(triples = triples.plus,
+                                       triples.to.find = find.triple,
+                            datumAttributeCol = "plot.size",
+                            datumValueCol = "5",
+                            datumValueNot = "1"
+                                 )
+
+
+
+
+# Make the triples into a network
+network.graph <- triples.plus %>% triples.to.context.network(drop.xml.edges = TRUE, cols.to.include = graph.cols.to.include) 
+ # %>% save.graph.ml(  name.prefix = "rootXML")
+  
+# Now convert the network graph to a dataframe
+ network.graph.df <-  network.graph %>%
+      intergraph::asNetwork() %>% 
+      ggnetwork::ggnetwork(layout = "fruchtermanreingold") %>% tidyr::drop_na()
+ 
+  network.graph.df$plot.size <- network.graph.df$plot.size %>% as.numeric()
+
+ggplot2::ggplot(network.graph.df, aes(x = x, y = y, xend = xend, yend = yend)) +
+  geom_edges( color = "grey50") +
+    geom_nodes(aes(colour = plot.core, size = plot.size )) +
+  geom_text(aes(label= nominal.name), data = network.graph.df[network.graph.df$plot.core %in% "Ontology term", ]) +
+
+  theme_blank(legend.position="bottom")
+
+
+
+```
+
+
+

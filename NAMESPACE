@@ -2,6 +2,7 @@
 
 export("%>%")
 export(.data)
+export(add.ontology.col)
 export(any.new.nodes)
 export(data.as.triple)
 export(get.tag.value.pairs)
