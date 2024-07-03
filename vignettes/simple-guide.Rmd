@@ -17,3 +17,20 @@ knitr::opts_chunk$set(
 ```{r setup}
 library(MBSE.utils)
 ```
+
+
+# Traversing An XML File
+
+```{r traversing}
+
+# Load the sample XML file saved in this package:
+
+test.xml.file.path <- system.file("extdata","Example1.xml", package = "MBSE.utils")
+test.xml <- xml2::read_xml(test.xml.file.path)
+xml.atts.list <- get.xml.attrs(test.xml)
+
+xml.atts.list$xml_atts_sorted
+
+```
+
+There are `r xml.atts.list$number_of_attrs` attributes: `r xml.atts.list$all_attributes`
