@@ -9,6 +9,8 @@ vignette: >
 
 ```{r, include = FALSE}
 knitr::opts_chunk$set(
+  out.width = '80%',
+  fig.align = "center",
   collapse = TRUE,
   comment = "#>"
 )
@@ -113,7 +115,7 @@ this.file.name <-  paste(xml.info$file.name, "xpath = /*" )
 pander::pandoc.header(this.file.name, level = 2)
 ```
 
-```{r Example1Xml, eval=TRUE, fig.cap= "A network representation of Example1.xml, with XML structure dropped."}
+```{r Example1Xml, eval=TRUE, fig.cap= "A network representation of Example1.xml, with XML structure dropped.", fig.width=7,fig.height=5}
 triples.plus <- add.ontology.col(triples = triples.out,
                                        triples.to.find = find.triple,
                             datumAttributeCol = "plot.core",
