@@ -30,4 +30,4 @@ If you fork the repository use this snippet to update your local copy of vignett
    
 But take care if you use `build_vignettes()` as, apparently, bad things can happen to the state of package code.
 
-To read vignettes use: `browseVignettes("MBSE.utils")` which will give you a choice of HTML for reading and R code fro copying snippets.
+To read vignettes use: `browseVignettes("MBSE.utils")` which will give you a choice of HTML for reading and R code for copying snippets.
