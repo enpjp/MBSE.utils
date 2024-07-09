@@ -4,3 +4,5 @@
 ^inst/dev/MBSE\.utils\.inst\.dev$
 ^data-raw$
 
+^doc$
+^Meta$
