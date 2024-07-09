@@ -18,7 +18,7 @@ Some lightweight data has been included as a feedstock for the vignettes in the 
 
 #  Vignettes
 
-Some vignettes are planned so you might want to install from Github using:
+There is a vignette so you might want to install from Github using:
 
     install_github("enpjp/MBSE.utils", 
     dependencies = TRUE, 
@@ -28,4 +28,4 @@ If you fork the repository use this snippet to update your local copy of vignett
 
     install(dependencies = TRUE, build_vignettes = TRUE)
    
-But never use `build_vignettes()` as, apparently, bad things will happen to the state of package code.
+But take care if you use `build_vignettes()` as, apparently, bad things can happen to the state of package code.
