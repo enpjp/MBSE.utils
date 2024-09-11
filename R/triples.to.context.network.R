@@ -1,6 +1,6 @@
 #' Triples To Context Network
 #'
-#'Converts triples into a network.
+#' Converts triples into a network.
 #'
 #' @param x Set of datum triples
 #' @param cols.to.include List of columns to include.
